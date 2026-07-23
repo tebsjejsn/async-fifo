@@ -196,7 +196,7 @@ module tb();
         end
 
         // Successful execution of all tests
-        $display("\n\nSUCCESS: ALL TESTS PASSED");
+        $display("\n\nSUCCESS: ALL TESTS PASSED\n");
         $finish;
     end
 endmodule
