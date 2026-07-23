@@ -116,6 +116,10 @@ module tb();
             $stop;
         end
 
+        WR = 0;
+        RD = 0;
+        WD2 = 0;
+
         reset = 1;
         #20;
         reset = 0;

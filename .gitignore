@@ -1,0 +1,28 @@
+# Questa/ModelSim compilation libraries
+work/
+*.mti
+*.dat
+
+# Simulation logs and transcripts
+transcript
+*.log
+*.smsg
+
+# Waveform files
+*.wlf
+wlft*
+*.vstf
+qwave.db/
+
+# Coverage databases
+*.ucdb
+
+# Auto-generated configuration files
+# (Note: Only ignore modelsim.ini if you aren't using a custom, project-wide one)
+modelsim.ini
+
+# Temporary and lock files
+*.lock
+*~
+
+*.steps
