@@ -17,8 +17,5 @@ module reg_file(
 
     end
 
-    always_ff @(posedge RCLK) begin
-        if (RE1)
-            RD1 <= reg_type[A1];
-    end
+    assign RD1 = reg_type[A1];
 endmodule

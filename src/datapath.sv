@@ -20,33 +20,53 @@ module datapath(
     logic [6:0]  A1Prev;
     logic [6:0]  A2Prev;
     logic [31:0] RD1Next;
+    logic [6:0]  A1BinNext;
+    logic [6:0]  A2BinNext;
+    logic [6:0]  A1Bin;
+    logic [6:0]  A2Bin;
 
     // Address flip-flops
-    flopr #(.width(7)) rclk (
+    flopr #(.width(7)) rclkbin (
         .clk(RCLK),
         .reset,
         .d(A1Next),
         .q(A1)
     );
 
-    flopr #(.width(7)) wclk (
+    flopr #(.width(7)) wclkbin (
         .clk(WCLK),
         .reset,
         .d(A2Next),
         .q(A2)
     );
 
+    flopr #(.width(7)) rclkgrey (
+        .clk(RCLK),
+        .reset,
+        .d(A1BinNext),
+        .q(A1Bin)
+    );
+
+    flopr #(.width(7)) wclkgrey (
+        .clk(WCLK),
+        .reset,
+        .d(A2BinNext),
+        .q(A2Bin)
+    );
+
     // Address counters
     counter a1count (
         .a(A1),
         .s(RE1),
-        .y(A1Next)
+        .y(A1Next),
+        .y_bin(A1BinNext)
     );
 
     counter a2count (
         .a(A2),
         .s(WE2),
-        .y(A2Next)
+        .y(A2Next),
+        .y_bin(A2BinNext)
     );
 
     // Synchronizer flip-flops
@@ -97,8 +117,8 @@ module datapath(
     reg_file rf (
         .WCLK,
         .RCLK,
-        .A1(A1[5:0]),
-        .A2(A2[5:0]),
+        .A1(A1Bin[5:0]),
+        .A2(A2Bin[5:0]),
         .WE2,
         .WD2,
         .RE1,
